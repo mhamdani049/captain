@@ -1,0 +1,77 @@
+<div class="row">
+    <div class="col-lg-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                DataTables Advanced Tables
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+
+                <button ng-click="vm.onClickRefresh()" class="btn btn-info">Refresh</button>
+                <a ui-sref="app.users.add" class="btn btn-success">Add New</a>
+                <button ng-click="vm.onClickDeleteMultiple()" class="btn btn-danger">Delete</button>
+
+                <hr />
+                <p>Search :</p>
+                <form ng-submit="vm.onSubmitSearch()">
+                    <div class="form-group">
+                        <input class="form-control" placeholder="E-mail" name="email" type="text" ng-model="vm.find.email">
+                    </div>
+                    <button type="submit" class="btn btn-info">Go</button>
+                </form>
+
+                <hr />
+
+                <div class="dataTable_wrapper">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th><input type="checkbox" ng-model="vm.checkAll" ng-click="vm.checkUncheckAll()"></th>
+                                <th>EMAIL</th>
+                                <th>CREATED AT</th>
+                                <th>ACTION</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="row in vm.ts">
+                                <td><input type="checkbox" ng-model="row.checked" ng-change="vm.updateCheckall()"></td>
+                                <td>{{row.email}}</td>
+                                <td>{{row.createdAt}}</td>
+                                <td class="center">
+                                    <a ui-sref="app.users.edit({id: row.id})" class="btn btn-warning"><i class="glyphicon glyphicon-pencil"></i></a>
+                                    <button ng-click="vm.onClickDelete(row)" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <nav aria-label="...">
+                    <ul class="pager">
+                        <li>
+                            <!-- <a ng-if="vm.pagination.previousPage!=false" ui-sref="app.users.list({page: vm.pagination.previousPage, per_page: vm.pagination.perPage})">Previous</a> -->
+                            <button ng-click="vm.onClickPaginationPrevious()" ng-disabled="!vm.pagination.previousPage" class="btn btn-default btn-xs">Previous</button>
+                        </li>
+                        <li>
+                            <input type="number" name="inputPaginationPage" ng-model="vm.inputPaginationPage" ng-change="vm.onChangePaginationPage()">
+                        </li>
+                        <li>
+                            <!-- <a ng-if="vm.pagination.nextPage!=false" ui-sref="app.users.list({page: vm.pagination.nextPage, per_page: vm.pagination.perPage})">Next</a> -->
+                            <button ng-click="vm.onClickPaginationNext()" ng-disabled="!vm.pagination.nextPage" class="btn btn-default btn-xs">Next</button>
+                        </li>
+                        <li>
+                            <select id="paginationSelectNumberPage" ng-model="vm.selectedPaginationSelectNumberPage" ng-change="vm.onChangePaginationSelectNumberPage()">
+                                <option ng-repeat="row in vm.paginationSelectNumberPage" ng-selected="vm.selectedPaginationSelectNumberPage == row" value="{{row}}">{{row}}</option>
+                            </select>
+                        </li>
+                        <li>
+                            Total All : {{vm.pagination.total}}
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+    </div>
+    <!-- /.col-lg-12 -->
+</div>
