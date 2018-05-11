@@ -6,7 +6,8 @@ angular
 		'ui.router',
 		'ui.bootstrap',
 		'angular-loading-bar',
-		'ngStorage'
+		'ngStorage',
+		'amActionUtil'
 	])
 	.config(['$stateProvider','$urlRouterProvider', '$locationProvider', '$ocLazyLoadProvider', function($stateProvider, $urlRouterProvider, $locationProvider, $ocLazyLoadProvider) {
 
@@ -136,7 +137,8 @@ angular
 							files: [
 								'modules/users/UsersListController.js',
 								'modules/users/UsersListService.js',
-								'modules/users/UsersFormService.js'
+								'modules/users/UsersFormService.js',
+								'modules/home/TableService.js'
 							]
 						})
 					}

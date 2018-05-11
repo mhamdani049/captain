@@ -1,5 +1,5 @@
 angular.module('app')
-	.controller('UsersListController', ['$location', '$stateParams', '$state', 'UsersListService', 'UsersFormService', function($location, $stateParams, $state, UsersListService, UsersFormService) {
+	.controller('UsersListController', ['$location', '$stateParams', '$state', '$scope', 'UsersListService', 'UsersFormService', 'TableService', function($location, $stateParams, $state, $scope, UsersListService, UsersFormService, TableService) {
 		var vm = this;
 
 		vm.pagination = {
@@ -33,8 +33,39 @@ angular.module('app')
 		vm.find = {};
 		vm.onSubmitSearch = onSubmitSearch;
 
+		vm.tableSvc = new TableService();
+        initTableListener();
+		
+		function initTableListener() {
+			$scope.$on('requestDataStart', function () {
+				vm.loadingdata = 'inprogress';
+            });
+
+			$scope.$on('requestDataSuccess', function () {
+				vm.loadingdata = 'done';
+            });
+
+			$scope.$on('requestDataError', function (even, err) {
+				vm.loadingdata = 'done';
+				console.log('err: ', err);
+				alert(err.message);
+            })
+        }
+
 		initController();
 		function initController() {
+
+			var tblOpt = {
+				endPoint: '/user/orm',
+				collect: [],
+				sort: 'id desc',
+				criteriaMapping: {name: 'contains'}
+			};
+
+			vm.tableSvc.initialize(tblOpt);
+			vm.tableSvc.requestData();
+			console.log('initTableData - vm.tableSvc: ', vm.tableSvc);
+
 			UsersListService.All(vm.pagination, function(result) {
 				if (!result.error) {
 					console.log(result.datas.data.response.data);
@@ -133,6 +164,7 @@ angular.module('app')
 		function onSubmitSearch() {
 			console.log("onSubmitSearch...");
 			console.log(vm.find);
+			console.log(vm.tableSvc.refresh());
 		}
 
 	}]);
