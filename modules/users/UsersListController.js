@@ -35,6 +35,9 @@ angular.module('app')
 
 		vm.tableSvc = new TableService();
         initTableListener();
+
+        vm.goToPagePrev = goToPagePrev;
+        vm.goToPageNext = goToPageNext;
 		
 		function initTableListener() {
 			$scope.$on('requestDataStart', function () {
@@ -54,7 +57,6 @@ angular.module('app')
 
 		initController();
 		function initController() {
-
 			var tblOpt = {
 				endPoint: '/user/orm',
 				collect: [],
@@ -65,17 +67,6 @@ angular.module('app')
 			vm.tableSvc.initialize(tblOpt);
 			vm.tableSvc.requestData();
 			console.log('initTableData - vm.tableSvc: ', vm.tableSvc);
-
-			UsersListService.All(vm.pagination, function(result) {
-				if (!result.error) {
-					console.log(result.datas.data.response.data);
-					vm.ts = result.datas.data.response.data;
-
-					vm.pagination = result.datas.data.response.meta;
-				} else {
-					vm.ts = [];
-				}
-			});
 		}
 
 		function onChangePaginationSelectNumberPage() {
@@ -165,6 +156,16 @@ angular.module('app')
 			console.log("onSubmitSearch...");
 			console.log(vm.find);
 			console.log(vm.tableSvc.refresh());
+		}
+
+		function goToPageNext() {
+			console.log("vm.tableSvc - goToPageNext", vm.tableSvc);
+			vm.tableSvc.goToPage(vm.tableSvc.page + 1);
+		}
+
+		function goToPagePrev() {
+			console.log("vm.tableSvc - goToPagePrev", vm.tableSvc);
+			vm.tableSvc.goToPage(vm.tableSvc.page + -1);	
 		}
 
 	}]);

@@ -49,14 +49,20 @@
                     <ul class="pager">
                         <li>
                             <!-- <a ng-if="vm.pagination.previousPage!=false" ui-sref="app.users.list({page: vm.pagination.previousPage, per_page: vm.pagination.perPage})">Previous</a> -->
-                            <button ng-click="vm.onClickPaginationPrevious()" ng-disabled="!vm.pagination.previousPage" class="btn btn-default btn-xs">Previous</button>
+
+                            <!-- <button ng-click="vm.onClickPaginationPrevious()" ng-disabled="!vm.pagination.previousPage" class="btn btn-default btn-xs">Previous</button> -->
+
+                            <a href="javascript:;" ng-click="vm.goToPagePrev()"><i class="fa fa-chevron-left"></i></a>
                         </li>
                         <li>
                             <input type="number" name="inputPaginationPage" ng-model="vm.inputPaginationPage" ng-change="vm.onChangePaginationPage()">
                         </li>
                         <li>
                             <!-- <a ng-if="vm.pagination.nextPage!=false" ui-sref="app.users.list({page: vm.pagination.nextPage, per_page: vm.pagination.perPage})">Next</a> -->
-                            <button ng-click="vm.onClickPaginationNext()" ng-disabled="!vm.pagination.nextPage" class="btn btn-default btn-xs">Next</button>
+                            
+                            <!-- <button ng-click="vm.onClickPaginationNext()" ng-disabled="!vm.pagination.nextPage" class="btn btn-default btn-xs">Next</button> -->
+
+                            <a href="javascript:;" ng-click="vm.goToPageNext()"><i class="fa fa-chevron-right"></i></a>
                         </li>
                         <li>
                             <select id="paginationSelectNumberPage" ng-model="vm.selectedPaginationSelectNumberPage" ng-change="vm.onChangePaginationSelectNumberPage()">

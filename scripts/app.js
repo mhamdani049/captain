@@ -119,14 +119,15 @@ angular
 						return $ocLazyLoad.load({
 							name: 'app',
 							files: [
-								'modules/users/UsersMainController.js'
+								'modules/users/UsersMainController.js',
+								'modules/home/TableService.js'
 							]
 						})
 					}
 				}
 			})
 			.state('app.users.list', {
-				url: '/list/:page/:per_page',
+				url: '/list/:action',
 				controller: 'UsersListController',
 				controllerAs: 'vm',
 				templateUrl: 'modules/users/views/list.html',
