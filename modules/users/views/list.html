@@ -40,9 +40,9 @@
                                 <td>{{row.email}}</td>
                                 <td>{{row.createdAt}}</td>
                                 <td class="center">
-                                    <a ui-sref="app.users.edit({id: row.id})" class="btn btn-warning"><i class="glyphicon glyphicon-pencil"></i></a>
-                                    <button ng-click="vm.onClickDelete(row)" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></button>
-                                    <button ng-click="vm.onClickShowModalChangePassword(row)" class="btn btn-warning"><i class="glyphicon glyphicon-lock"></i></button>
+                                    <a ui-sref="app.users.edit({id: row.id})" class="btn btn-warning" title="Edit"><i class="glyphicon glyphicon-pencil"></i></a>
+                                    <button ng-click="vm.onClickDelete(row)" class="btn btn-danger" title="Delete"><i class="glyphicon glyphicon-remove"></i></button>
+                                    <button ng-click="vm.onClickShowModalChangePassword(row)" class="btn btn-warning" title="Change Password"><i class="glyphicon glyphicon-lock"></i></button>
                                 </td>
                             </tr>
                             <tr ng-if="vm.loadingdata == 'inprogress'">
