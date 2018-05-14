@@ -15,7 +15,7 @@
                 <p>Search :</p>
                 <form ng-submit="vm.onSubmitSearch()">
                     <div class="form-group">
-                        <input class="form-control" placeholder="E-mail" name="email" type="text" ng-model="vm.find.email">
+                        <input class="form-control" placeholder="E-mail" name="email" type="text" ng-model="vm.tableSvc.where.email">
                     </div>
                     <button type="submit" class="btn btn-info">Go</button>
                 </form>
@@ -33,7 +33,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="row in vm.ts">
+                            <tr ng-repeat="row in vm.tableSvc.datas" ng-if="vm.tableSvc.datas.length && vm.loadingdata == 'done'">
                                 <td><input type="checkbox" ng-model="row.checked" ng-change="vm.updateCheckall()"></td>
                                 <td>{{row.email}}</td>
                                 <td>{{row.createdAt}}</td>
@@ -42,38 +42,44 @@
                                     <button ng-click="vm.onClickDelete(row)" class="btn btn-danger"><i class="glyphicon glyphicon-remove"></i></button>
                                 </td>
                             </tr>
+                            <tr ng-if="vm.loadingdata == 'inprogress'">
+                                <td colspan="100%" class="text-center">
+                                    <span><img ng-src="images/spinner.gif" /></span>
+                                </td>
+                            </tr>
+                            <tr ng-if="!vm.tableSvc.datas.length && vm.loadingdata == 'done'">
+                                <td colspan="100%" class="text-center">Data tidak tersedia..</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
-                <nav aria-label="...">
+                <nav>
                     <ul class="pager">
                         <li>
-                            <!-- <a ng-if="vm.pagination.previousPage!=false" ui-sref="app.users.list({page: vm.pagination.previousPage, per_page: vm.pagination.perPage})">Previous</a> -->
-
-                            <!-- <button ng-click="vm.onClickPaginationPrevious()" ng-disabled="!vm.pagination.previousPage" class="btn btn-default btn-xs">Previous</button> -->
-
-                            <a href="javascript:;" ng-click="vm.goToPagePrev()"><i class="fa fa-chevron-left"></i></a>
-                        </li>
-                        <li>
-                            <input type="number" name="inputPaginationPage" ng-model="vm.inputPaginationPage" ng-change="vm.onChangePaginationPage()">
-                        </li>
-                        <li>
-                            <!-- <a ng-if="vm.pagination.nextPage!=false" ui-sref="app.users.list({page: vm.pagination.nextPage, per_page: vm.pagination.perPage})">Next</a> -->
-                            
-                            <!-- <button ng-click="vm.onClickPaginationNext()" ng-disabled="!vm.pagination.nextPage" class="btn btn-default btn-xs">Next</button> -->
-
-                            <a href="javascript:;" ng-click="vm.goToPageNext()"><i class="fa fa-chevron-right"></i></a>
-                        </li>
-                        <li>
-                            <select id="paginationSelectNumberPage" ng-model="vm.selectedPaginationSelectNumberPage" ng-change="vm.onChangePaginationSelectNumberPage()">
-                                <option ng-repeat="row in vm.paginationSelectNumberPage" ng-selected="vm.selectedPaginationSelectNumberPage == row" value="{{row}}">{{row}}</option>
+                            Show Rows:
+                            <select ng-model="vm.tableSvc.limit" ng-change="vm.setLimit()">
+                                <option ng-selected="val == vm.tableSvc.limit" ng-repeat="val in [2, 10, 25, 50, 100, 250]" value="{{val}}">{{val}}</option>
                             </select>
                         </li>
                         <li>
-                            Total All : {{vm.pagination.total}}
+                            {{vm.tableSvc.startRow | number}} - {{vm.tableSvc.endRow | number}} of {{vm.tableSvc.metadata.numrows | number}}
+                        </li>
+                        <li>
+                            <a href="javascript:;" ng-click="vm.goToPagePrev()"><i class="fa fa-chevron-left"></i></a>
+                        </li>
+                        <li>
+                            <!--<input type="number" name="inputPaginationPage" ng-model="vm.tableSvc.page" ng-change="vm.onChangePaginationPage()">-->
+                            <form ng-submit="vm.tableSvc.goToPage(vm.tableSvc.page)" style="display: unset !important;">
+                                <input type="number" ng-model="vm.tableSvc.page">
+                                <input type="submit" class="hidden"/>
+                            </form>
+                        </li>
+                        <li>
+                            <a href="javascript:;" ng-click="vm.goToPageNext()"><i class="fa fa-chevron-right"></i></a>
                         </li>
                     </ul>
                 </nav>
+
             </div>
             <!-- /.panel-body -->
         </div>

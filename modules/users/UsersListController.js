@@ -30,7 +30,7 @@ angular.module('app')
 		vm.checkUncheckAll = checkUncheckAll;
 		vm.updateCheckall = updateCheckall;
 
-		vm.find = {};
+		vm.filter = {};
 		vm.onSubmitSearch = onSubmitSearch;
 
 		vm.tableSvc = new TableService();
@@ -38,6 +38,7 @@ angular.module('app')
 
         vm.goToPagePrev = goToPagePrev;
         vm.goToPageNext = goToPageNext;
+        vm.setLimit = setLimit;
 		
 		function initTableListener() {
 			$scope.$on('requestDataStart', function () {
@@ -55,7 +56,12 @@ angular.module('app')
             })
         }
 
-		initController();
+        execute();
+        function execute() {
+			if(!_.isEmpty(vm.tableSvc.where)) initFilterValue();
+            initController();
+        }
+
 		function initController() {
 			var tblOpt = {
 				endPoint: '/user/orm',
@@ -68,6 +74,10 @@ angular.module('app')
 			vm.tableSvc.requestData();
 			console.log('initTableData - vm.tableSvc: ', vm.tableSvc);
 		}
+
+        function initFilterValue() {
+            console.log('initFilter loaded');
+        }
 
 		function onChangePaginationSelectNumberPage() {
 			console.log("onChangePaginationSelectNumberPage...");
@@ -109,7 +119,7 @@ angular.module('app')
 
 		function onClickRefresh() {
 			console.log("onClickRefresh...");
-			initController();
+            vm.tableSvc.refresh();
 		}
 
 		function checkUncheckAll() {
@@ -119,16 +129,16 @@ angular.module('app')
 			} else {
 				vm.checkAll = false;
 			}
-			angular.forEach(vm.ts, function(data) {
+			angular.forEach(vm.tableSvc.datas, function(data) {
 				data.checked = vm.checkAll;
 			});
 		};
 
 		function updateCheckall($index, data) {
 			console.log("updateCheckall...");
-			var dataTotal = vm.ts.length;
+			var dataTotal = vm.tableSvc.datas.length;
 			var count = 0;
-			angular.forEach(vm.ts, function(data) {
+			angular.forEach(vm.tableSvc.datas, function(data) {
 				if (data.checked) {
 					count++;
 				}
@@ -144,27 +154,40 @@ angular.module('app')
 		function onClickDeleteMultiple() {
 			console.log("onClickDeleteMultiple...");
 			var arrDeleted = [];
-			angular.forEach(vm.ts, function(data) {
+			angular.forEach(vm.tableSvc.datas, function(data) {
 				if (data.checked) {
 					arrDeleted.push(data.id);
 				}
 			});
-			console.log(arrDeleted);
+
+			if (arrDeleted.length > 0) {
+				var ids = JSON.stringify(arrDeleted);
+                UsersFormService.deleteMany(ids, function(result) {
+                    if (!result.error) {
+                        alert("Successfully deleted!");
+                        vm.tableSvc.refresh();
+                    } else {
+                        alert(JSON.stringify(result));
+                    }
+                });
+			}
 		}
 
 		function onSubmitSearch() {
 			console.log("onSubmitSearch...");
-			console.log(vm.find);
-			console.log(vm.tableSvc.refresh());
+			console.log(vm.filter);
+            vm.tableSvc.refresh();
 		}
+		
+		function setLimit() {
+			vm.tableSvc.setLimit(vm.tableSvc.limit);
+        }
 
 		function goToPageNext() {
-			console.log("vm.tableSvc - goToPageNext", vm.tableSvc);
 			vm.tableSvc.goToPage(vm.tableSvc.page + 1);
 		}
 
 		function goToPagePrev() {
-			console.log("vm.tableSvc - goToPagePrev", vm.tableSvc);
 			vm.tableSvc.goToPage(vm.tableSvc.page + -1);	
 		}
 

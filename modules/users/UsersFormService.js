@@ -37,16 +37,21 @@ angular.module('app')
 			});
 		}
 
-		service.delete = function(id, callback) {
+		service.deleteMany  = function(ids, callback) {
 			$http({
-				method: 'DELETE',
-				url: 'http://localhost:1337/user/'+id
+				method: 'POST',
+				url: 'http://localhost:1337/user/deleteMany',
+				data: {
+                    ids: ids
+				}
 			}).then(function (response) {
 				callback({error: false, message: response});
 			}, function(error) {
 				callback({error: true, message: error});
 			});
 		}
+
+
 
 		return service;
 	}]);
