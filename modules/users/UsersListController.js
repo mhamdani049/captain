@@ -66,7 +66,7 @@ angular.module('app')
 			var tblOpt = {
 				endPoint: '/user/orm',
 				collect: [],
-				sort: 'id desc',
+				sort: 'createdAt desc',
 				criteriaMapping: {name: 'contains'}
 			};
 
@@ -108,6 +108,7 @@ angular.module('app')
 		        UsersFormService.delete(data.id, function(result) {
 					if (!result.error) {
 						alert("Successfully deleted!");
+                        vm.tableSvc.refresh();
 					} else {
 						alert(JSON.stringify(result));
 					}

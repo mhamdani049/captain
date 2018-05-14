@@ -12,7 +12,7 @@ angular.module('app')
 			}, function(error) {
 				callback({error: true, message: error.data.response.message});
 			});
-		}
+		};
 
 		service.getById = function(id, callback) {
 			$http({
@@ -23,7 +23,7 @@ angular.module('app')
 			}, function(error) {
 				callback({error: true, message: error});
 			});
-		}
+		};
 
 		service.update = function (id, datas, callback) {
 			$http({
@@ -35,7 +35,18 @@ angular.module('app')
 			}, function(error) {
 				callback({error: true, message: error});
 			});
-		}
+		};
+
+        service.delete = function (id, callback) {
+            $http({
+                method: 'DELETE',
+                url: 'http://localhost:1337/user/'+id
+            }).then(function (response) {
+                callback({error: false, message: response});
+            }, function(error) {
+                callback({error: true, message: error});
+            });
+        };
 
 		service.deleteMany  = function(ids, callback) {
 			$http({
@@ -49,9 +60,7 @@ angular.module('app')
 			}, function(error) {
 				callback({error: true, message: error});
 			});
-		}
-
-
+		};
 
 		return service;
 	}]);

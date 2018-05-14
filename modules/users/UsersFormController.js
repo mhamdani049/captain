@@ -24,7 +24,7 @@ angular.module('app')
 			UsersFormService.save(vm.f, function(result) {
 				if (!result.error) {
 					alert(result.message);
-					$location.path('/app/users/list');
+					$state.go("app.users.list", {action:''});
 				} else {
 					alert(result.message);
 				}

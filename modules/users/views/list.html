@@ -27,6 +27,7 @@
                         <thead>
                             <tr>
                                 <th><input type="checkbox" ng-model="vm.checkAll" ng-click="vm.checkUncheckAll()"></th>
+                                <th>FULL NAME</th>
                                 <th>EMAIL</th>
                                 <th>CREATED AT</th>
                                 <th>ACTION</th>
@@ -35,6 +36,7 @@
                         <tbody>
                             <tr ng-repeat="row in vm.tableSvc.datas" ng-if="vm.tableSvc.datas.length && vm.loadingdata == 'done'">
                                 <td><input type="checkbox" ng-model="row.checked" ng-change="vm.updateCheckall()"></td>
+                                <td>{{row.firstName}} {{row.lastName}}</td>
                                 <td>{{row.email}}</td>
                                 <td>{{row.createdAt}}</td>
                                 <td class="center">
