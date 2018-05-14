@@ -193,12 +193,32 @@ angular.module('app')
 		function goToPagePrev() {
 			vm.tableSvc.goToPage(vm.tableSvc.page + -1);	
 		}
+
+		vm.people = [
+		    'Fred',
+		    'Jim',
+		    'Bob'
+		 ];
 		
 		function onClickShowModalChangePassword(data) {
-			console.log("onClickShowModalChangePassword...");
-
+			console.log("onClickShowModalChangePassword...", data);
 			var modalInstance = $uibModal.open({
                 templateUrl: 'modules/users/views/changePassword-modal.html',
+                controller: 'UsersChangePasswordModal',
+                controllerAs: 'vm',
+                resolve: {
+					item: function(){
+			          	return data;
+			        },
+					loadMyFiles: function($ocLazyLoad) {
+						return $ocLazyLoad.load({
+							name: 'app',
+							files: [
+								'modules/users/UsersChangePasswordModal.js',
+							]
+						})
+					}
+				}
 			});
 
             modalInstance.result.then(function (selectedItem) {

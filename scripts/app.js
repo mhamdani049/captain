@@ -5,7 +5,6 @@ angular
 		'oc.lazyLoad',
 		'ui.router',
 		'ui.bootstrap',
-        'ui.bootstrap.tpls',
 		'angular-loading-bar',
 		'ngStorage',
 		'amActionUtil'
