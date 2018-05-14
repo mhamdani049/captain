@@ -1,5 +1,5 @@
 angular.module('app')
-	.controller('UsersListController', ['$location', '$stateParams', '$state', '$scope', 'UsersListService', 'UsersFormService', 'TableService', function($location, $stateParams, $state, $scope, UsersListService, UsersFormService, TableService) {
+	.controller('UsersListController', ['$location', '$stateParams', '$state', '$scope', '$uibModal', '$log', 'UsersListService', 'UsersFormService', 'TableService', function($location, $stateParams, $state, $scope, $uibModal, $log, UsersListService, UsersFormService, TableService) {
 		var vm = this;
 
 		vm.pagination = {
@@ -39,6 +39,8 @@ angular.module('app')
         vm.goToPagePrev = goToPagePrev;
         vm.goToPageNext = goToPageNext;
         vm.setLimit = setLimit;
+
+        vm.onClickShowModalChangePassword = onClickShowModalChangePassword;
 		
 		function initTableListener() {
 			$scope.$on('requestDataStart', function () {
@@ -191,5 +193,20 @@ angular.module('app')
 		function goToPagePrev() {
 			vm.tableSvc.goToPage(vm.tableSvc.page + -1);	
 		}
+		
+		function onClickShowModalChangePassword(data) {
+			console.log("onClickShowModalChangePassword...");
+
+			var modalInstance = $uibModal.open({
+				templateUrl: 'users/views/changePasswordModal.html'
+			});
+
+            modalInstance.result.then(function (selectedItem) {
+                vm.selected = selectedItem;
+            }, function () {
+                $log.info('Modal dismissed at: ' + new Date());
+            });
+
+        }
 
 	}]);
