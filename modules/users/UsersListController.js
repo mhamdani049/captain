@@ -198,7 +198,7 @@ angular.module('app')
 			console.log("onClickShowModalChangePassword...");
 
 			var modalInstance = $uibModal.open({
-				templateUrl: 'users/views/changePasswordModal.html'
+                templateUrl: 'modules/users/views/changePassword-modal.html',
 			});
 
             modalInstance.result.then(function (selectedItem) {
