@@ -9,14 +9,15 @@ angular
 		'ngStorage',
 		'amActionUtil'
 	])
-	.config(['$stateProvider','$urlRouterProvider', '$locationProvider', '$ocLazyLoadProvider', function($stateProvider, $urlRouterProvider, $locationProvider, $ocLazyLoadProvider) {
+	.config(['$stateProvider','$urlRouterProvider', '$locationProvider', '$ocLazyLoadProvider', '$httpProvider', function($stateProvider, $urlRouterProvider, $locationProvider, $ocLazyLoadProvider, $httpProvider) {
 
 		$ocLazyLoadProvider.config({
 			debug: true,
 			events: false,
 		});
 
-		// $locationProvider.html5Mode(true);
+		$locationProvider.html5Mode(false);
+        $locationProvider.html5Mode('!');
 
 		$urlRouterProvider.otherwise('/login');
 
@@ -109,6 +110,22 @@ angular
 					}
 				}
 			})
+            .state('app.me.changePassword', {
+                url: '/changePassword',
+                controller: 'ChangePasswordController',
+                controllerAs: 'vm',
+                templateUrl: 'modules/me/views/changePassword.html',
+                resolve: {
+                    loadMyFiles: function($ocLazyLoad) {
+                        return $ocLazyLoad.load({
+                            name: 'app',
+                            files: [
+                                'modules/me/ChangePasswordController.js',
+                            ]
+                        })
+                    }
+                }
+            })
 			.state('app.users', {
 				url: '/users',
 				controller: 'UsersMainController',
@@ -178,15 +195,31 @@ angular
 						})
 					}
 				}
-			})
+			});
 
-
+        $httpProvider.interceptors.push(['$q', '$location', '$localStorage', function ($q, $location, $localStorage) {
+            return {
+                'request': function (config) {
+                    config.headers = config.headers || {};
+                    if ($localStorage.currentUser) {
+                        config.headers.Authorization = 'Bearer ' + $localStorage.currentUser.token;
+                    }
+                    return config;
+                },
+                'responseError': function (response) {
+                    if (response.status === 401 || response.status === 403) {
+                        $location.path('/login');
+                    }
+                    return $q.reject(response);
+                }
+            };
+        }]);
 	}])
 	.run(['$rootScope', '$http', '$location', '$localStorage', function($rootScope, $http, $location, $localStorage) {
 		// keep user logged in after page refresh
-        if ($localStorage.currentUser) {
-            $http.defaults.headers.common.Authorization = 'Bearer ' + $localStorage.currentUser.token;
-        }
+        // if ($localStorage.currentUser) {
+         //    $http.defaults.headers.common.Authorization = 'Bearer ' + $localStorage.currentUser.token;
+        // }
 
         // redirect to login page if not logged in and trying to access a restricted page
         $rootScope.$on('$locationChangeStart', function (event, next, current) {
@@ -196,4 +229,4 @@ angular
                 $location.path('/login');
             }
         });
-	}])
+	}]);

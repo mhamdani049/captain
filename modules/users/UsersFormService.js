@@ -62,5 +62,17 @@ angular.module('app')
 			});
 		};
 
+        service.changePassword = function (datas, callback) {
+            $http({
+                method: 'POST',
+                url: 'http://localhost:1337/user/changePassword/',
+                data: datas
+            }).then(function (response) {
+                callback({error: false, message: response});
+            }, function(error) {
+                callback({error: true, message: error});
+            });
+        };
+
 		return service;
 	}]);

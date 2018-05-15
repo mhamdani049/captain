@@ -173,6 +173,8 @@ angular.module('app')
                         alert(JSON.stringify(result));
                     }
                 });
+			} else {
+				alert('no data selected yet!');
 			}
 		}
 
@@ -215,6 +217,7 @@ angular.module('app')
 							name: 'app',
 							files: [
 								'modules/users/UsersChangePasswordModal.js',
+                                'modules/users/UsersFormService.js',
 							]
 						})
 					}

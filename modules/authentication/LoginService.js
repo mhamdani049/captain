@@ -9,7 +9,13 @@ angular.module('app')
                 data: {email: email, password: password}
 		   	}).then(function (response){
 		   		if (response.data.response.data.token) {
-		   			$localStorage.currentUser = { id: response.data.response.data.user.id, email: email, token: response.data.response.data.token };
+		   			$localStorage.currentUser = {
+		   				id: response.data.response.data.user.id,
+						email: email,
+						token: response.data.response.data.token,
+						firstName: response.data.response.data.user.firstName,
+						lastName: response.data.response.data.user.lastName
+		   			};
 
 		   			// add jwt token to auth header for all request made by the $http service
 		   			$http.defaults.headers.common.Authorization = 'Baerer ' + response.data.response.data.token;
