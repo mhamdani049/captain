@@ -1,10 +1,26 @@
 angular.module('app')
+    .directive('ngFiles', ['$parse', function ($parse) {
+		alert('aa');
+        function fn_link(scope, element, attrs) {
+            alert('bb');
+        	var onChange = $parse(attrs.ngFiles);
+            element.on('change', function (event) {
+                onChange(scope, { $files: event.target.files });
+            });
+        };
+
+        return {
+            link: fn_link
+        }
+    }])
 	.controller('UsersFormController', ['$location', '$http', '$state', '$stateParams', 'UsersFormService', function($location, $http, $state, $stateParams, UsersFormService) {
 		var vm = this;
 
 		vm.f = {};
 		vm.mode = "add";
+        var formdata = new FormData();
 
+		vm.getTheFiles = getTheFiles;
 		vm.saveOnSubmit = saveOnSubmit;
 
 		if ($stateParams.id) {
@@ -21,7 +37,14 @@ angular.module('app')
 			console.log('save...');
 
 			delete vm.f.id;
-			UsersFormService.save(vm.f, function(result) {
+            var _formdata = new FormData();
+            //_formdata.append("email", vm.f.email);
+
+            for (var key in vm.f) {
+                _formdata.append("email", vm.f[key]);
+			}
+
+			UsersFormService.save(_formdata, function(result) {
 				if (!result.error) {
 					alert(result.message);
 					$state.go("app.users.list", {action:''});
@@ -54,4 +77,11 @@ angular.module('app')
 				}
 			});
 		}
+
+        function getTheFiles($files) {
+            angular.forEach($files, function (value, key) {
+                formdata.append(key, value);
+            });
+            console.log("formdata", formdata);
+        };
 	}]);

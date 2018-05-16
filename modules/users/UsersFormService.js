@@ -1,17 +1,46 @@
 angular.module('app')
-	.factory('UsersFormService', ['$http', function($http) {
+	.factory('UsersFormService', ['$http', '$localStorage', function($http, $localStorage) {
 		var service = {};
 
 		service.save = function (datas, callback) {
-			$http({
-				method: 'POST',
-				url: 'http://localhost:1337/signup',
-				data: datas
-			}).then(function (response) {
-				callback({error: false, message: response.data.response.message});
-			}, function(error) {
-				callback({error: true, message: error.data.response.message});
-			});
+			// $http({
+			// 	method: 'POST',
+			// 	url: 'http://localhost:1337/signup',
+			// 	data: datas,
+             //    transformRequest: angular.identity,
+             //    headers: {
+			// 		'Content-Type': undefined
+             //    }
+			// }).then(function (response) {
+			// 	callback({error: false, message: response.data.response.message});
+			// }, function(error) {
+			// 	callback({error: true, message: error.data.response.message});
+			// });
+
+            /* Using AJAX */
+            var oReq  = new XMLHttpRequest();
+
+            /* Required for large files */
+            //xhr.setRequestHeader('X-CSRF-Token', csrfToken);
+            //formData.append('myFile', inputElement.files[0]);
+            //formData.append('_csrf', csrfToken);
+
+            oReq.open('POST', 'http://localhost:1337/signup', true);
+            oReq.setRequestHeader('Authorization', 'Bearer ' + $localStorage.currentUser.token);
+            oReq.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            //oReq.setRequestHeader("Access-Control-Allow-Origin", "*");
+            //oReq.setRequestHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+            oReq.onload = function() {
+                if (oReq.readyState === 4) {
+                    var response = JSON.parse(oReq.responseText);
+                    if (oReq.status === 200 && response.status === 'OK') {
+                        console.log('successful');
+                    } else {
+                        console.log('failed');
+                    }
+                }
+            }
+            oReq.send(datas);
 		};
 
 		service.getById = function(id, callback) {
