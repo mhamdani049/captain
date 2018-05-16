@@ -37,14 +37,14 @@ angular.module('app')
 			console.log('save...');
 
 			delete vm.f.id;
-            var _formdata = new FormData();
+            //var _formdata = new FormData();
             //_formdata.append("email", vm.f.email);
 
             for (var key in vm.f) {
-                _formdata.append(key, vm.f[key]);
+                formdata.append(key, vm.f[key]);
 			}
 
-			UsersFormService.save(_formdata, function(result) {
+			UsersFormService.save(formdata, function(result) {
 				if (!result.error) {
 					alert(result.message);
 					$state.go("app.users.list", {action:''});
