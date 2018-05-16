@@ -41,7 +41,7 @@ angular.module('app')
             //_formdata.append("email", vm.f.email);
 
             for (var key in vm.f) {
-                _formdata.append("email", vm.f[key]);
+                _formdata.append(key, vm.f[key]);
 			}
 
 			UsersFormService.save(_formdata, function(result) {
