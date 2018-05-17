@@ -26,6 +26,8 @@ angular.module('app')
         function saveOnSubmitChangePassword() {
             console.log("saveOnSubmitChangePassword...");
 
+
+
             UsersFormService.changePassword(vm.f, function(result) {
                 if (!result.error) {
                     alert('Successfully updated!');

@@ -1,9 +1,23 @@
 angular.module('app')
+    .directive('ngFiles', ['$parse', function ($parse) {
+        function fn_link(scope, element, attrs) {
+            var onChange = $parse(attrs.ngFiles);
+            element.on('change', function (event) {
+                onChange(scope, { $files: event.target.files });
+            });
+        };
+
+        return {
+            link: fn_link
+        }
+    }])
 	.controller('ProfileController', ['$location', '$stateParams', '$state', '$localStorage', 'UsersFormService', function($location, $stateParams, $state, $localStorage, UsersFormService) {
 		var vm = this;
 
 		vm.f = {};
+        var formdata = new FormData();
 
+        vm.getTheFiles = getTheFiles;
 		vm.saveOnSubmit = saveOnSubmit;
 
 		initController();
@@ -27,11 +41,16 @@ angular.module('app')
         function saveOnSubmit() {
         	console.log("saveOnSubmit...");
 
-        	UsersFormService.update($localStorage.currentUser.id, vm.f, function(result) {
-				if (!result.error) {
-					vm.f = result.message.data;
+            for (var key in vm.f) {
+                formdata.append(key, vm.f[key]);
+            }
 
-					$localStorage.currentUser.email = result.message.data.email;
+        	UsersFormService.update($localStorage.currentUser.id, formdata, function(result) {
+				console.log("result", result);
+        		if (!result.error) {
+					vm.f = result.message.data[0];
+
+					$localStorage.currentUser.email = result.message.data[0].email;
 
 					alert('Successfully updated!');
 				} else {
@@ -39,4 +58,13 @@ angular.module('app')
 				}
 			});
         }
+
+        function getTheFiles($files) {
+            angular.forEach($files, function (value, key) {
+                //console.log("key",key);
+                //console.log("value",value);
+                formdata.append("avatar", value);
+            });
+            console.log("formdata", formdata);
+        };
 	}]);

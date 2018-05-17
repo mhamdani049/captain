@@ -3,9 +3,13 @@
   <component name="ChangeListManager">
     <list default="true" id="7626c11b-d1de-47d6-99d5-4ca0c3ab98bc" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/modules/me/ChangePasswordController.js" afterPath="$PROJECT_DIR$/modules/me/ChangePasswordController.js" />
+      <change beforePath="$PROJECT_DIR$/modules/me/ProfileController.js" afterPath="$PROJECT_DIR$/modules/me/ProfileController.js" />
+      <change beforePath="$PROJECT_DIR$/modules/me/views/profile.html" afterPath="$PROJECT_DIR$/modules/me/views/profile.html" />
       <change beforePath="$PROJECT_DIR$/modules/users/UsersFormController.js" afterPath="$PROJECT_DIR$/modules/users/UsersFormController.js" />
       <change beforePath="$PROJECT_DIR$/modules/users/UsersFormService.js" afterPath="$PROJECT_DIR$/modules/users/UsersFormService.js" />
       <change beforePath="$PROJECT_DIR$/modules/users/views/form.html" afterPath="$PROJECT_DIR$/modules/users/views/form.html" />
+      <change beforePath="$PROJECT_DIR$/modules/users/views/list.html" afterPath="$PROJECT_DIR$/modules/users/views/list.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,27 +24,40 @@
         <entry file="file://$PROJECT_DIR$/scripts/app.js">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="408">
-              <caret line="23" column="22" lean-forward="true" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
+              <caret line="23" column="22" lean-forward="false" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UsersFormController.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="UsersFormController.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/modules/users/UsersFormController.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="357">
-              <caret line="44" column="13" lean-forward="true" selection-start-line="44" selection-start-column="13" selection-end-line="44" selection-end-column="13" />
+            <state relative-caret-position="306">
+              <caret line="40" column="12" lean-forward="true" selection-start-line="40" selection-start-column="12" selection-end-line="40" selection-end-column="35" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="UsersFormService.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="UsersFormService.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modules/users/UsersFormService.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="510">
-              <caret line="48" column="30" lean-forward="false" selection-start-line="48" selection-start-column="30" selection-end-line="48" selection-end-column="30" />
+            <state relative-caret-position="935">
+              <caret line="75" column="70" lean-forward="false" selection-start-line="75" selection-start-column="62" selection-end-line="75" selection-end-column="70" />
+              <folding>
+                <element signature="e#182#192#0" expanded="false" />
+                <element signature="e#1679#1689#0" expanded="false" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="list.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/modules/users/views/list.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="250">
+              <caret line="20" column="140" lean-forward="false" selection-start-line="20" selection-start-column="140" selection-end-line="20" selection-end-column="140" />
               <folding />
             </state>
           </provider>
@@ -49,8 +66,28 @@
       <file leaf-file-name="form.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/modules/users/views/form.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="95" lean-forward="true" selection-start-line="2" selection-start-column="95" selection-end-line="2" selection-end-column="95" />
+            <state relative-caret-position="204">
+              <caret line="12" column="12" lean-forward="false" selection-start-line="12" selection-start-column="12" selection-end-line="14" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ProfileController.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/modules/me/ProfileController.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="182">
+              <caret line="45" column="13" lean-forward="true" selection-start-line="45" selection-start-column="13" selection-end-line="45" selection-end-column="13" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="profile.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/modules/me/views/profile.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="238">
+              <caret line="14" column="18" lean-forward="false" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -89,6 +126,7 @@
       <find>changePassword</find>
       <find>$uibModalInstance</find>
       <find>&lt;a</find>
+      <find>email</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -104,16 +142,17 @@
         <option value="$PROJECT_DIR$/modules/users/views/changePassword-modal.html" />
         <option value="$PROJECT_DIR$/modules/users/UsersChangePasswordModal.js" />
         <option value="$PROJECT_DIR$/modules/authentication/LoginService.js" />
-        <option value="$PROJECT_DIR$/modules/me/views/profile.html" />
         <option value="$PROJECT_DIR$/modules/me/views/changePassword.html" />
-        <option value="$PROJECT_DIR$/modules/me/ChangePasswordController.js" />
-        <option value="$PROJECT_DIR$/modules/users/views/list.html" />
         <option value="$PROJECT_DIR$/modules/me/views/main.html" />
         <option value="$PROJECT_DIR$/modules/users/UsersListController.js" />
-        <option value="$PROJECT_DIR$/modules/users/views/form.html" />
-        <option value="$PROJECT_DIR$/modules/users/UsersFormController.js" />
         <option value="$PROJECT_DIR$/scripts/app.js" />
+        <option value="$PROJECT_DIR$/modules/users/views/form.html" />
+        <option value="$PROJECT_DIR$/modules/me/ChangePasswordController.js" />
         <option value="$PROJECT_DIR$/modules/users/UsersFormService.js" />
+        <option value="$PROJECT_DIR$/modules/users/UsersFormController.js" />
+        <option value="$PROJECT_DIR$/modules/me/views/profile.html" />
+        <option value="$PROJECT_DIR$/modules/me/ProfileController.js" />
+        <option value="$PROJECT_DIR$/modules/users/views/list.html" />
       </list>
     </option>
   </component>
@@ -130,8 +169,8 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-1608" />
-    <option name="y" value="-8" />
+    <option name="x" value="-1536" />
+    <option name="y" value="39" />
     <option name="width" value="1616" />
     <option name="height" value="876" />
   </component>
@@ -260,12 +299,12 @@
       <workItem from="1526263925404" duration="23657000" />
       <workItem from="1526349847292" duration="10102000" />
       <workItem from="1526366067949" duration="2767000" />
-      <workItem from="1526455763385" duration="8665000" />
+      <workItem from="1526455763385" duration="16107000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="61445000" />
+    <option name="totallyTimeSpent" value="68887000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-1608" y="-8" width="1616" height="876" extended-state="6" />
@@ -539,26 +578,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/me/views/profile.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="15" column="10" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="16" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/scripts/directives/sidebar/sidebar.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
           <caret line="5" column="37" lean-forward="true" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/me/ProfileController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="13" column="0" lean-forward="true" selection-start-line="0" selection-start-column="0" selection-end-line="41" selection-end-column="8" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -574,14 +597,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="204">
           <caret line="12" column="12" lean-forward="false" selection-start-line="12" selection-start-column="12" selection-end-line="19" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/me/ChangePasswordController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="595">
-          <caret line="35" column="9" lean-forward="false" selection-start-line="35" selection-start-column="9" selection-end-line="35" selection-end-column="9" />
           <folding />
         </state>
       </provider>
@@ -602,16 +617,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/users/views/list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="658">
-          <caret line="50" column="34" lean-forward="false" selection-start-line="50" selection-start-column="34" selection-end-line="50" selection-end-column="34" />
-          <folding>
-            <element signature="n#style#0;n#form#0;n#li#3;n#ul#0;n#nav#0;n#div#1;n#div#0;n#div#0;n#div#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/modules/users/views/changePassword-modal.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="85">
@@ -624,14 +629,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
           <caret line="16" column="75" lean-forward="false" selection-start-line="16" selection-start-column="75" selection-end-line="16" selection-end-column="75" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/modules/me/MeMainController.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -676,34 +673,77 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/modules/users/UsersFormController.js">
+    <entry file="file://$PROJECT_DIR$/scripts/app.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="44" column="13" lean-forward="true" selection-start-line="44" selection-start-column="13" selection-end-line="44" selection-end-column="13" />
+        <state relative-caret-position="408">
+          <caret line="23" column="22" lean-forward="false" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/me/MeMainController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/me/ChangePasswordController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="28" column="0" lean-forward="false" selection-start-line="28" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/modules/users/views/form.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="95" lean-forward="true" selection-start-line="2" selection-start-column="95" selection-end-line="2" selection-end-column="95" />
+        <state relative-caret-position="204">
+          <caret line="12" column="12" lean-forward="false" selection-start-line="12" selection-start-column="12" selection-end-line="14" selection-end-column="18" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/scripts/app.js">
+    <entry file="file://$PROJECT_DIR$/modules/me/views/profile.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="23" column="22" lean-forward="true" selection-start-line="23" selection-start-column="22" selection-end-line="23" selection-end-column="22" />
+        <state relative-caret-position="238">
+          <caret line="14" column="18" lean-forward="false" selection-start-line="14" selection-start-column="18" selection-end-line="14" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/me/ProfileController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="182">
+          <caret line="45" column="13" lean-forward="true" selection-start-line="45" selection-start-column="13" selection-end-line="45" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/users/views/list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="250">
+          <caret line="20" column="140" lean-forward="false" selection-start-line="20" selection-start-column="140" selection-end-line="20" selection-end-column="140" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/modules/users/UsersFormService.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="48" column="30" lean-forward="false" selection-start-line="48" selection-start-column="30" selection-end-line="48" selection-end-column="30" />
+        <state relative-caret-position="935">
+          <caret line="75" column="70" lean-forward="false" selection-start-line="75" selection-start-column="62" selection-end-line="75" selection-end-column="70" />
+          <folding>
+            <element signature="e#182#192#0" expanded="false" />
+            <element signature="e#1679#1689#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/modules/users/UsersFormController.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="40" column="12" lean-forward="true" selection-start-line="40" selection-start-column="12" selection-end-line="40" selection-end-column="35" />
           <folding />
         </state>
       </provider>

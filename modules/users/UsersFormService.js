@@ -16,32 +16,6 @@ angular.module('app')
 			// }, function(error) {
 			// 	callback({error: true, message: error.data.response.message});
 			// });
-
-            // /* Using AJAX */
-            // var oReq  = new XMLHttpRequest();
-
-            // /* Required for large files */
-            // //xhr.setRequestHeader('X-CSRF-Token', csrfToken);
-            // //formData.append('myFile', inputElement.files[0]);
-            // //formData.append('_csrf', csrfToken);
-
-            // oReq.open('POST', 'http://localhost:1337/signup', true);
-            // oReq.setRequestHeader('Authorization', 'Bearer ' + $localStorage.currentUser.token);
-            // oReq.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-            // //oReq.setRequestHeader("Access-Control-Allow-Origin", "*");
-            // //oReq.setRequestHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-            // oReq.onload = function() {
-            //     if (oReq.readyState === 4) {
-            //         var response = JSON.parse(oReq.responseText);
-            //         if (oReq.status === 200 && response.status === 'OK') {
-            //             console.log('successful');
-            //         } else {
-            //             console.log('failed');
-            //         }
-            //     }
-            // }
-            // oReq.send(datas);
-
             $.ajax({
 		        url: 'http://localhost:1337/signup',
 		        type: 'POST',
@@ -55,10 +29,11 @@ angular.module('app')
 					'Authorization': 'Bearer ' + $localStorage.currentUser.token
                 },
 		       success: function(response) {
-		           console.log("Success : " + response);
+		        	console.log("response",response);
+                   	callback({error: false, message: response.response.message});
 		       },
 		       error: function(jqXHR, textStatus, errorMessage) {
-		           console.log(errorMessage); // Optional
+                   	callback({error: true, message: JSON.stringify(errorMessage)});
 		       }
 		    });
 		};
@@ -75,21 +50,42 @@ angular.module('app')
 		};
 
 		service.update = function (id, datas, callback) {
-			$http({
-				method: 'PUT',
-				url: 'http://localhost:1337/user/'+id,
-				data: datas
-			}).then(function (response) {
-				callback({error: false, message: response});
-			}, function(error) {
-				callback({error: true, message: error});
-			});
+			// $http({
+			// 	method: 'PUT',
+			// 	url: 'http://localhost:1337/user/'+id,
+			// 	data: datas
+			// }).then(function (response) {
+			// 	callback({error: false, message: response});
+			// }, function(error) {
+			// 	callback({error: true, message: error});
+			// });
+            $.ajax({
+                url: 'http://localhost:1337/user/update/'+id,
+                type: 'POST',
+                data: datas,
+                dataType: 'json',
+                async: false,
+                cache: false,
+                contentType: false,
+                processData: false,
+                headers: {
+                    'Authorization': 'Bearer ' + $localStorage.currentUser.token
+                },
+                success: function(response) {
+                    console.log("response",response);
+                    callback({error: false, message: response.response});
+                },
+                error: function(jqXHR, textStatus, errorMessage) {
+                    callback({error: true, message: JSON.stringify(errorMessage)});
+                }
+            });
 		};
 
         service.delete = function (id, callback) {
             $http({
-                method: 'DELETE',
-                url: 'http://localhost:1337/user/'+id
+                method: 'POST',
+                url: 'http://localhost:1337/user/delete',
+                data: {id:id}
             }).then(function (response) {
                 callback({error: false, message: response});
             }, function(error) {

@@ -1,8 +1,6 @@
 angular.module('app')
     .directive('ngFiles', ['$parse', function ($parse) {
-		alert('aa');
         function fn_link(scope, element, attrs) {
-            alert('bb');
         	var onChange = $parse(attrs.ngFiles);
             element.on('change', function (event) {
                 onChange(scope, { $files: event.target.files });
@@ -55,12 +53,14 @@ angular.module('app')
 		}
 
 		function update() {
-			console.log('update...');
-
-			UsersFormService.update($stateParams.id, vm.f, function(result) {
+			console.log('update...', $stateParams.id, vm.f);
+            for (var key in vm.f) {
+                formdata.append(key, vm.f[key]);
+            }
+			UsersFormService.update($stateParams.id, formdata, function(result) {
 				if (!result.error) {
-					vm.f = result.message.data;
 					alert('Successfully updated!');
+                    $state.go("app.users.list", {action:''});
 				} else {
 					alert(JSON.stringify(result));
 				}
@@ -80,7 +80,9 @@ angular.module('app')
 
         function getTheFiles($files) {
             angular.forEach($files, function (value, key) {
-                formdata.append(key, value);
+            	//console.log("key",key);
+                //console.log("value",value);
+                formdata.append("avatar", value);
             });
             console.log("formdata", formdata);
         };

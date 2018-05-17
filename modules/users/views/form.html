@@ -11,7 +11,7 @@
                 <input class="form-control" placeholder="Last Name" name="lastName" type="text" ng-model="vm.f.lastName">
             </div>
             <div class="form-group">
-                <input type="file" id="file1" name="file" multiple ng-files="vm.getTheFiles($files)" />
+                <input type="file" id="avatar" name="avatar" multiple ng-files="vm.getTheFiles($files)" accept="image/x-png,image/gif,image/jpeg" />
             </div>
             <div ng-if="vm.mode=='add'">
                 <div class="form-group">
