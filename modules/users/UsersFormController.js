@@ -80,8 +80,8 @@ angular.module('app')
 
         function getTheFiles($files) {
             angular.forEach($files, function (value, key) {
-            	//console.log("key",key);
-                //console.log("value",value);
+            	console.log("key",key);
+                console.log("value",value);
                 formdata.append("avatar", value);
             });
             console.log("formdata", formdata);
