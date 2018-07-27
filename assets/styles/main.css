@@ -81,3 +81,28 @@ body {
 text-decoration: none;
 background-color: #eee;
 }
+
+
+.dataTable_wrapper {
+    margin-top: 10px;
+}
+.title {
+    font-weight: bold;
+}
+.filter-box {
+    background-color: #f8f8f8;
+    border-left: 1px solid #e7e7e7;
+    height: 600px;
+    padding-left: 20px;
+    padding-top: 10px;
+    padding-right: 50px;
+}
+.margintop10 {
+    margin-top: 10px;
+}
+.marginleft8 {
+    margin-left: 8px;
+}
+.pagination-box {
+
+}

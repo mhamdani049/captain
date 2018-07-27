@@ -1,0 +1,17 @@
+{
+	"appName": "Captain",
+	"appType": "admin",
+	"data": {
+		"version": "1.0.0 Beta",
+		"cache": 0,
+		"providers": [
+			{
+				"name": "google",
+				"desc": "Google Account",
+				"clientId": ""
+			}
+		]
+	},
+	"baseUrl": "",
+	"apiUrl": "http://localhost:1337"
+}

@@ -1,95 +1,99 @@
-<div class="row">
-    <div class="col-lg-12">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                DataTables Advanced Tables
+<div class="row marginleft8">
+    <div class="col-md-8">
+        <div class="row margintop10">
+            <div class="col-md-5">
+                <h4 class="title">{{vm.title}}</h4>
             </div>
-            <!-- /.panel-heading -->
-            <div class="panel-body">
-
-                <button ng-click="vm.onClickRefresh()" class="btn btn-info">Refresh</button>
-                <a ui-sref="app.users.add" class="btn btn-success">Add New</a>
-                <button ng-click="vm.onClickDeleteMultiple()" class="btn btn-danger">Delete</button>
-
-                <hr />
-                <p>Search :</p>
-                <form ng-submit="vm.onSubmitSearch()">
-                    <div class="form-group">
-                        <input class="form-control" placeholder="E-mail" name="email" type="text" ng-model="vm.tableSvc.where.email">
-                    </div>
-                    <div class="form-group">
-                        <input class="form-control" placeholder="Fullname" name="fullname" type="text" ng-model="vm.tableSvc.where.firstName">
-                    </div>
-                    <button type="submit" class="btn btn-info">Go</button>
-                </form>
-
-                <hr />
-
-                <div class="dataTable_wrapper">
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th><input type="checkbox" ng-model="vm.checkAll" ng-click="vm.checkUncheckAll()"></th>
-                                <th>FULL NAME</th>
-                                <th>EMAIL</th>
-                                <th>CREATED AT</th>
-                                <th>ACTION</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr ng-repeat="row in vm.tableSvc.datas" ng-if="vm.tableSvc.datas.length && vm.loadingdata == 'done'">
-                                <td><input type="checkbox" ng-model="row.checked" ng-change="vm.updateCheckall()"></td>
-                                <td>{{row.firstName}} {{row.lastName}}</td>
-                                <td>{{row.email}}</td>
-                                <td>{{row.createdAt}}</td>
-                                <td class="center">
-                                    <a ui-sref="app.users.edit({id: row.id})" class="btn btn-warning" title="Edit"><i class="glyphicon glyphicon-pencil"></i></a>
-                                    <button ng-click="vm.onClickDelete(row)" class="btn btn-danger" title="Delete"><i class="glyphicon glyphicon-remove"></i></button>
-                                    <button ng-click="vm.onClickShowModalChangePassword(row)" class="btn btn-info" title="Change Password"><i class="glyphicon glyphicon-lock"></i></button>
-                                </td>
-                            </tr>
-                            <tr ng-if="vm.loadingdata == 'inprogress'">
-                                <td colspan="100%" class="text-center">
-                                    <span><img ng-src="assets/images/spinner.gif" /></span>
-                                </td>
-                            </tr>
-                            <tr ng-if="!vm.tableSvc.datas.length && vm.loadingdata == 'done'">
-                                <td colspan="100%" class="text-center">Data tidak tersedia..</td>
-                            </tr>
-                        </tbody>
-                    </table>
+            <div class="col-md-7" style="text-align: right;">
+                <div class="add-box">
+                    <button ng-click="vm.onClickRefresh()" class="btn btn-info">Refresh</button>
+                    <a ui-sref="app.users.add" class="btn btn-success">Add New</a>
+                    <button ng-click="vm.onClickDeleteMultiple()" class="btn btn-danger">Delete</button>
                 </div>
-                <nav>
-                    <ul class="pager">
-                        <li>
-                            Show Rows:
-                            <select ng-model="vm.tableSvc.limit" ng-change="vm.setLimit()">
-                                <option ng-selected="val == vm.tableSvc.limit" ng-repeat="val in [2, 10, 25, 50, 100, 250]" value="{{val}}">{{val}}</option>
-                            </select>
-                        </li>
-                        <li>
-                            {{vm.tableSvc.startRow | number}} - {{vm.tableSvc.endRow | number}} of {{vm.tableSvc.metadata.numrows | number}}
-                        </li>
-                        <li>
-                            <a href="javascript:;" ng-click="vm.goToPagePrev()"><i class="fa fa-chevron-left"></i></a>
-                        </li>
-                        <li>
-                            <!--<input type="number" name="inputPaginationPage" ng-model="vm.tableSvc.page" ng-change="vm.onChangePaginationPage()">-->
-                            <form ng-submit="vm.tableSvc.goToPage(vm.tableSvc.page)" style="display: unset !important;">
-                                <input type="number" ng-model="vm.tableSvc.page">
-                                <input type="submit" class="hidden"/>
-                            </form>
-                        </li>
-                        <li>
-                            <a href="javascript:;" ng-click="vm.goToPageNext()"><i class="fa fa-chevron-right"></i></a>
-                        </li>
-                    </ul>
-                </nav>
-
             </div>
-            <!-- /.panel-body -->
         </div>
-        <!-- /.panel -->
+        <div class="dataTable_wrapper">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th><input type="checkbox" ng-model="vm.checkAll" ng-click="vm.checkUncheckAll()"></th>
+                        <th>FIRST NAME</th>
+                        <th>LAST NAME</th>
+                        <th>EMAIL</th>
+                        <th>CREATED AT</th>
+                        <th>ACTION</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="row in vm.tableSvc.datas" ng-if="vm.tableSvc.datas.length && vm.loadingdata == 'done'">
+                        <td><input type="checkbox" ng-model="row.checked" ng-change="vm.updateCheckall()"></td>
+                        <td>{{row.firstName}}</td>
+                        <td>{{row.lastName}}</td>
+                        <td>{{row.email}}</td>
+                        <td>{{row.createdAt}}</td>
+                        <td class="center">
+                            <a ui-sref="app.users.edit({id: row.id})" class="btn btn-warning" title="Edit"><i class="glyphicon glyphicon-pencil"></i></a>
+                            <button ng-click="vm.onClickDelete($index)" class="btn btn-danger" title="Delete"><i class="glyphicon glyphicon-remove"></i></button>
+                            <button ng-click="vm.onClickShowModalChangePassword($index)" class="btn btn-info" title="Change Password"><i class="glyphicon glyphicon-lock"></i></button>
+                        </td>
+                    </tr>
+                    <tr ng-if="vm.loadingdata == 'inprogress'">
+                        <td colspan="100%" class="text-center">
+                            <span><img ng-src="assets/images/spinner.gif" /></span>
+                        </td>
+                    </tr>
+                    <tr ng-if="!vm.tableSvc.datas.length && vm.loadingdata == 'done'">
+                        <td colspan="100%" class="text-center">Data tidak tersedia..</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="pagination-box">
+            <nav>
+                <ul class="pager">
+                    <li>
+                        Show Rows:
+                        <select ng-model="vm.tableSvc.limit" ng-change="vm.tableSvc.setLimit(vm.tableSvc.limit)">
+                            <option ng-repeat="val in [5, 10, 25, 50, 100, 250]" value="{{val}}" ng-selected="val == vm.tableSvc.limit">{{val}}</option>
+                        </select>
+                    </li>
+                    <li>
+                        {{vm.tableSvc.startRow | number}} - {{vm.tableSvc.endRow | number}} of {{vm.tableSvc.metadata.numrows | number}}
+                    </li>
+                    <li>
+                        <a href="javascript:;" ng-click="vm.tableSvc.goToPage(vm.tableSvc.page + -1)"><i class="fa fa-chevron-left"></i></a>
+                    </li>
+                    <li>
+                        <form ng-submit="vm.tableSvc.goToPage(vm.tableSvc.page)" style="display: unset !important;">
+                            <input type="number" ng-model="vm.tableSvc.page" readonly>
+                            <input type="submit" class="hidden"/>
+                        </form>
+                    </li>
+                    <li>
+                        <a href="javascript:;" ng-click="vm.tableSvc.goToPage(vm.tableSvc.page + 1)"><i class="fa fa-chevron-right"></i></a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
     </div>
-    <!-- /.col-lg-12 -->
+    <div class="col-md-4 filter-box">
+        <fieldset>
+            <legend><h4>Search:</h4></legend>
+            <form ng-submit="vm.onSubmitSearch()">
+                <div class="form-group">
+                    <label>E-mail :</label>
+                    <input class="form-control" placeholder="E-mail" name="email" type="text" ng-model="vm.filter.email">
+                </div>
+                <div class="form-group">
+                    <label>First Name :</label>
+                    <input class="form-control" placeholder="First Name" name="firstName" type="text" ng-model="vm.filter.firstName">
+                </div>
+                <div class="form-group">
+                    <label>Last Name :</label>
+                    <input class="form-control" placeholder="Last Name" name="lastName" type="text" ng-model="vm.filter.lastName">
+                </div>
+                <button type="submit" class="btn btn-info">Submit</button>
+            </form>
+        </fieldset>
+    </div>
 </div>

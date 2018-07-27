@@ -3,7 +3,7 @@
 
     function t(t, i, s, a, n) {
         function o(t) {
-            this.endPoint = t.endPoint || "", this.collect = t.collect || [], this.collectOptions = t.collectOptions || {}, this.populate = t.populate || [], this.sort = t.sort || "createdAt desc", this.limit = n.parseLimit(a.action) || t.limit || 2, this.modelCriteriaMappingConfig = t.criteriaMapping || {}, this.sortBy = this.sort.split(" ")[0] || "createdAt", this.sortOrder = this.sort.split(" ")[1] || "desc", this.lat = t.lat || "", this.lng = t.lng || "", this.distance = t.distance || ""
+            this.endPoint = t.endPoint || "", this.collect = t.collect || [], this.collectOptions = t.collectOptions || {}, this.populate = t.populate || [], this.sort = t.sort || "createdAt desc", this.limit = n.parseLimit(a.action) || t.limit || 25, this.modelCriteriaMappingConfig = t.criteriaMapping || {}, this.sortBy = this.sort.split(" ")[0] || "createdAt", this.sortOrder = this.sort.split(" ")[1] || "desc", this.lat = t.lat || "", this.lng = t.lng || "", this.distance = t.distance || ""
         }
 
         function r() {
@@ -14,7 +14,7 @@
                 lng: this.lng,
                 distance: this.distance
             };
-            return this.page > 1 && (t.page = this.page), 2 != this.limit && (t.limit = this.limit), t
+            return this.page > 1 && (t.page = this.page), 25 != this.limit && (t.limit = this.limit), t
         }
 
         function h(t) {
@@ -127,7 +127,7 @@
             }), i
         }
         return function() {
-            return this.endPoint = "", this.loadingdata = !1, this.datas = [], this.metadata = {}, this.populate = [], this.collect = [], this.where = n.parseCriteria(a.action), this.skip = n.parseSkip(a.action) || 0, this.limit = n.parseLimit(a.action) || 2, this.page = n.parsePage(a.action) || 1, this.sort = n.parseSort(a.action) || "", this.lat = n.parseLat(a.action) || "", this.lng = n.parseLng(a.action) || "", this.distance = n.parseDistance(a.action) || "", this.sortBy = "createdAt", this.sortOrder = "desc", this.modelCriteriaMappingConfig = {}, this.currentPage = this.skip > 0 ? this.skip / this.limit + 1 : 1, this.startRow = this.skip + 1, this.endRow = this.page * this.limit, this.initialize = o, this.setCollect = f, this.setWhere = u, this.clearWhere = m, this.setSort = g, this.setData = d, this.setEndPoint = c, this.requestData = C, this.pageNav = w, this.goToPage = P, this.setLimit = l, this.submitSearch = y, this.refresh = h, this.modelWhereMappingToReqParamWhere = v, this.setModelCriteriaMappingConfig = p, this.getCurrentActionParam = r, this
+            return this.endPoint = "", this.loadingdata = !1, this.datas = [], this.metadata = {}, this.populate = [], this.collect = [], this.where = n.parseCriteria(a.action), this.skip = n.parseSkip(a.action) || 0, this.limit = n.parseLimit(a.action) || 25, this.page = n.parsePage(a.action) || 1, this.sort = n.parseSort(a.action) || "", this.lat = n.parseLat(a.action) || "", this.lng = n.parseLng(a.action) || "", this.distance = n.parseDistance(a.action) || "", this.sortBy = "createdAt", this.sortOrder = "desc", this.modelCriteriaMappingConfig = {}, this.currentPage = this.skip > 0 ? this.skip / this.limit + 1 : 1, this.startRow = this.skip + 1, this.endRow = this.page * this.limit, this.initialize = o, this.setCollect = f, this.setWhere = u, this.clearWhere = m, this.setSort = g, this.setData = d, this.setEndPoint = c, this.requestData = C, this.pageNav = w, this.goToPage = P, this.setLimit = l, this.submitSearch = y, this.refresh = h, this.modelWhereMappingToReqParamWhere = v, this.setModelCriteriaMappingConfig = p, this.getCurrentActionParam = r, this
         }
     }
     t.$inject = ["$rootScope", "$http", "$state", "$stateParams", "actionUtil"], angular.module('app').factory("TableService", t)

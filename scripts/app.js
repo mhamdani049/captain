@@ -125,77 +125,7 @@ angular
                         })
                     }
                 }
-            })
-			.state('app.users', {
-				url: '/users',
-				controller: 'UsersMainController',
-				controllerAs: 'vm',
-				templateUrl: 'modules/users/views/main.html',
-				resolve: {
-					loadMyFiles: function($ocLazyLoad) {
-						return $ocLazyLoad.load({
-							name: 'app',
-							files: [
-								'modules/users/UsersMainController.js',
-								'modules/home/TableService.js'
-							]
-						})
-					}
-				}
-			})
-			.state('app.users.list', {
-				url: '/list/:action',
-				controller: 'UsersListController',
-				controllerAs: 'vm',
-				templateUrl: 'modules/users/views/list.html',
-				resolve: {
-					loadMyFiles: function($ocLazyLoad) {
-						return $ocLazyLoad.load({
-							name: 'app',
-							files: [
-								'modules/users/UsersListController.js',
-								'modules/users/UsersListService.js',
-								'modules/users/UsersFormService.js',
-								'modules/home/TableService.js'
-							]
-						})
-					}
-				}
-			})
-			.state('app.users.add', {
-				url: '/add',
-				controller: 'UsersFormController',
-				controllerAs: 'vm',
-				templateUrl: 'modules/users/views/form.html',
-				resolve: {
-					loadMyFiles: function($ocLazyLoad) {
-						return $ocLazyLoad.load({
-							name: 'app',
-							files: [
-								'modules/users/UsersFormController.js',
-								'modules/users/UsersFormService.js'
-							]
-						})
-					}
-				}
-			})
-			.state('app.users.edit', {
-				url: '/edit/:id',
-				controller: 'UsersFormController',
-				controllerAs: 'vm',
-				templateUrl: 'modules/users/views/form.html',
-				resolve: {
-					loadMyFiles: function($ocLazyLoad) {
-						return $ocLazyLoad.load({
-							name: 'app',
-							files: [
-								'modules/users/UsersFormController.js',
-								'modules/users/UsersFormService.js'
-							]
-						})
-					}
-				}
-			});
+            });
 
         $httpProvider.interceptors.push(['$q', '$location', '$localStorage', function ($q, $location, $localStorage) {
             return {
